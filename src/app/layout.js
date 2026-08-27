@@ -1,4 +1,4 @@
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, notification }) {
   return (
     <html lang='en'>
       <body className='min-h-full flex flex-col'>
@@ -10,6 +10,7 @@ export default function RootLayout({ children }) {
           </ul>
         </nav>
         {children}
+        {notification}
       </body>
     </html>
   );
