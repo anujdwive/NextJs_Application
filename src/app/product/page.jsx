@@ -1,3 +1,4 @@
+import ProductsListing from "@/components/products/ProductsListing";
 import React, { Suspense } from "react";
 
 export const ProductDetails = async () => {
@@ -25,44 +26,7 @@ const Product = async () => {
         alignItems: "center",
         gap: "10px",
       }}>
-      <h1>Products</h1>
-
-      <table border='1'>
-        <thead>
-          <tr>
-            <th>Sl.n</th>
-            <th>Product Name</th>
-            <th>category</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.products.map((product) => (
-            <tr key={product.id}>
-              <td>{product.id}</td>
-              <td>{product.title}</td>
-              <td>{product.category}</td>
-              <td>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "5px",
-                  }}>
-                  <button>Edit</button>
-                  <button>Delete</button>
-                  {/* <Link to={`/admin/users/${user.id}`}>View</Link> */}
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colSpan='4'>Total Products: {data?.total}</td>
-          </tr>
-        </tfoot>
-      </table>
+      <ProductsListing products={data.products} totalProducts={data.total} />
 
       <Suspense fallback={<div>Product details loading....</div>}>
         <ProductDetails />
