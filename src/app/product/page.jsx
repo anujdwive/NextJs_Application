@@ -11,11 +11,19 @@ export const CartDetails = async () => {
   return <h1>Cart Loaded</h1>;
 };
 
-const Product = async () => {
-  const response = await fetch("https://dummyjson.com/products");
+const Product = async ({ searchParams }) => {
+  const { search = "" } = await searchParams;
+
+  const url = search
+    ? `https://dummyjson.com/products/search?q=${search}`
+    : "https://dummyjson.com/products";
+
+  const response = await fetch(url);
+
   if (!response.ok) {
-    throw new Error("Somthing went rong");
+    throw new Error("Something went wrong");
   }
+
   const data = await response.json();
 
   return (
